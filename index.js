@@ -1,1 +1,3 @@
-const username = "";
+const username = ''
+
+console.log(username)
