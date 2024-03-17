@@ -8,7 +8,7 @@
     "start": "node index.js",
     "postinstall": "npx husky init",
     "prepare": "husky",
-    "migrations:run": "node src/db/postgres/migrations/exec.js"
+    "migrations": "node src/db/postgres/migrations/exec.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,7 @@
   "devDependencies": {
     "eslint": "^8.57.0",
     "git-commit-msg-linter": "^5.0.7",
-    "husky": "^9.0.11",
+    "husky": "^8.0.3",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5"
   },
