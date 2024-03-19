@@ -1,6 +1,6 @@
-import { PostgresGetUserByIdRepository } from "../repositories/postgres/get-user-by-id.";
+import { PostgresGetUserByIdRepository } from "../repositories/postgres/get-user-by-id.js"
 
-export class GetUserByIdUserUseCase {
+export class GetUserByIdUseCase {
   async execute(userId) {
     // criar instancia do repositório
     const getUserByIdRepository = new PostgresGetUserByIdRepository()
