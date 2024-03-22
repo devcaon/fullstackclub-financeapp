@@ -10,11 +10,11 @@ export class UpdateUserUseCase {
     if (updateUserParams.email) {
       const getUserByEmailRepository =
         new PostgresGetUserByEmailRepository()
-      const userWithProvidedEmail = getUserByEmailRepository.execute(
+      const userWithProvidedEmail = await getUserByEmailRepository.execute(
         updateUserParams.email,
       )
 
-      if (userWithProvidedEmail) {
+      if (userWithProvidedEmail && userWithProvidedEmail.id !== userId) {
         throw new EmailAlreadyInUseError(updateUserParams.email)
       }
     }
@@ -36,7 +36,7 @@ export class UpdateUserUseCase {
     // 3. chamar o repository para atualizar o usuário
     const postgresUpdateUserRepository = new PostgresUpdateUserRepository()
 
-    const updateUser = await postgresUpdateUserRepository(userId, user)
+    const updateUser = await postgresUpdateUserRepository.execute(userId, user)
 
     return updateUser
   }
