@@ -1,14 +1,16 @@
-import { GetUserByIdUseCase } from "../use-cases/index.js"
+
 import {
   checkIfIdIsValid,
   invalidIdResponse,
-  notFound,
   ok,
   serverError,
   userNotFoundResponse
 } from "./helpers/index.js"
 
 export class GetUserByIdController {
+  constructor(getUserByIdUseCase) {
+    this.getUserByIdUseCase = getUserByIdUseCase
+  }
 
   async execute(httpRequest) {
     try {
@@ -20,9 +22,8 @@ export class GetUserByIdController {
       }
 
       //instancia o use case
-      const getUserByIdUseCase = new GetUserByIdUseCase()
 
-      const user = await getUserByIdUseCase.execute(httpRequest.params.userId)
+      const user = await this.getUserByIdUseCase.execute(httpRequest.params.userId)
 
       if (!user) {
         return userNotFoundResponse()

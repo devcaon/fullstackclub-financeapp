@@ -1,4 +1,4 @@
-import { UpdateUserUseCase } from '../use-cases/index.js';
+
 import { EmailAlreadyInUseError } from '../errors/user.js';
 import {
   checkIfEmailIsValid,
@@ -13,6 +13,10 @@ import {
 } from './helpers/index.js';
 
 export class UpdateUserController {
+
+  constructor(updateUserUseCase) {
+    this.updateUserUseCase = updateUserUseCase
+  }
 
   async execute(httpRequest) {
 
@@ -56,8 +60,7 @@ export class UpdateUserController {
       }
 
       // chamar use case
-      const updateUserUseCase = new UpdateUserUseCase()
-      const updateUser = await updateUserUseCase.execute(userId, params)
+      const updateUser = await this.updateUserUseCase.execute(userId, params)
 
       return ok(updateUser)
 
