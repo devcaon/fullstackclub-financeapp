@@ -12,6 +12,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
+// CREATE USER
 app.post("/api/users", async (request, response) => {
   const createUserController = new CreateUserController()
 
@@ -20,6 +21,7 @@ app.post("/api/users", async (request, response) => {
   return response.status(statusCode).json(body)
 })
 
+// UPDATE USER
 app.patch("/api/users/:userId", async (request, response) => {
   const updateUserController = new UpdateUserController()
 
@@ -28,12 +30,22 @@ app.patch("/api/users/:userId", async (request, response) => {
   return response.status(statusCode).json(body)
 })
 
+// GET USER BY ID
 app.get("/api/users/:userId", async (request, response) => {
   const getUserByIdController = new GetUserByIdController()
 
   const { statusCode, body } = await getUserByIdController.execute(request)
 
   response.status(statusCode).send(body)
+})
+
+// DELETE USER
+app.delete("/api/users/:userId", async (request, response) => {
+  // cria instancia do controller
+
+  // executa controller
+
+  // response.status(statusCode).send(body)
 })
 
 app.listen(process.env.PORT, () => console.log(`Listening on port ${PORT}`))
