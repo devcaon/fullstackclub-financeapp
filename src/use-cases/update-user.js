@@ -3,9 +3,9 @@ import bcrypt from 'bcrypt'
 
 export class UpdateUserUseCase {
 
-  constructor(postgresUpdateUserRepository, getUserByEmailRepository) {
-    this.postgresUpdateUserRepository = postgresUpdateUserRepository
+  constructor(getUserByEmailRepository, updateUserRepository) {
     this.getUserByEmailRepository = getUserByEmailRepository
+    this.updateUserRepository = updateUserRepository
   }
 
   async execute(userId, updateUserParams) {
@@ -38,7 +38,7 @@ export class UpdateUserUseCase {
 
     // 3. chamar o repository para atualizar o usuário
 
-    const updateUser = await this.postgresUpdateUserRepository.execute(userId, user)
+    const updateUser = await this.updateUserRepository.execute(userId, user)
 
     return updateUser
   }
