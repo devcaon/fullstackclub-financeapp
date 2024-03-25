@@ -9,7 +9,8 @@ import {
   invalidPasswordResponse,
   badRequest,
   ok,
-  serverError
+  serverError,
+  userNotFoundResponse
 } from './helpers/index.js';
 
 export class UpdateUserController {
@@ -61,6 +62,10 @@ export class UpdateUserController {
 
       // chamar use case
       const updateUser = await this.updateUserUseCase.execute(userId, params)
+
+      if (!updateUser) {
+        return userNotFoundResponse()
+      }
 
       return ok(updateUser)
 
