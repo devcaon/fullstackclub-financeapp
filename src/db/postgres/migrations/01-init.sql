@@ -16,7 +16,7 @@ BEGIN IF NOT EXISTS (
     pg_type
   WHERE
     typname = 'transactions_type'
-) THEN CREATE TYPE transactions_type AS ENUM('EARNING', 'EXPENSE', 'INVESTIMENT');
+) THEN CREATE TYPE transactions_type AS ENUM('EARNING', 'EXPENSE', 'INVESTMENT');
 
 END IF;
 
