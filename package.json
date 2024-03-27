@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start:dev": "node --watch index.js",
+    "dev": "node --watch index.js",
     "postinstall": "npx husky init",
     "prepare": "husky",
     "migrations": "node src/db/postgres/migrations/exec.js"
