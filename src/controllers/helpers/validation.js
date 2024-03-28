@@ -1,7 +1,9 @@
 import validator from "validator";
 import { badRequest } from "./http.js";
 
-export const checkIfIdIsValid = (id) => validator.isUUID(id)
+export const checkIfIdIsValid = (id) => {
+  return validator.isUUID(id)
+}
 
 export const invalidIdResponse = () =>
   badRequest({
@@ -20,8 +22,11 @@ export const validateRequiredFields = (params, requiredFields) => {
 
   for (const field of requiredFields) {
     const fieldIsMissing = !params[field]
+
     const fieldIsEmpty = checkIfIsString(params[field]) &&
       validator.isEmpty(params[field], { ignore_whitespace: true })
+
+    console.log('teste')
 
     if (fieldIsMissing || fieldIsEmpty) {
       return {

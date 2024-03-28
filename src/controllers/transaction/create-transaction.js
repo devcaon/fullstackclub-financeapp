@@ -20,7 +20,7 @@ export class CreateTransactionController {
       // validar campos obrigatórios
       const { ok: requiredFieldsWereProvided, missingField } = validateRequiredFields(params, requiredFields)
 
-      if (!requiredFieldsWereProvided.ok) {
+      if (!requiredFieldsWereProvided) {
         return requiredFieldIsMissingResponse(missingField)
       }
 

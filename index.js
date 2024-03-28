@@ -1,7 +1,7 @@
 import "dotenv/config.js"
 import express from 'express';
 import { makeCreateUserController, makeDeleteUserController, makeGetUserByIdController, makeUpdateUserController } from "./src/factories/controllers/user.js";
-import { makeCreateTransactionController } from "./src/factories/controllers/transaction.js";
+import { makeCreateTransactionController, makeGetTransactionsByUserIdController } from "./src/factories/controllers/transaction.js";
 
 const app = express();
 app.use(express.json());
@@ -51,7 +51,7 @@ app.delete("/api/users/:userId", async (request, response) => {
 })
 
 // Transaction routes
-// CREATE
+// CREATE TRANSACTIONS
 app.post("/api/transactions", async (request, response) => {
   const createTransactionController = makeCreateTransactionController()
 
@@ -59,6 +59,16 @@ app.post("/api/transactions", async (request, response) => {
 
   response.status(statusCode).send(body)
 
+})
+
+// GET TRANSACTIONS BY USER ID
+app.get("/api/transactions", async (request, response) => {
+
+  const getTransactionsByUserIdController = makeGetTransactionsByUserIdController()
+
+  const { statusCode, body } = await getTransactionsByUserIdController.execute(request)
+
+  response.status(statusCode).send(body)
 })
 
 app.listen(process.env.PORT, () => console.log(`Listening on port ${PORT}`))
