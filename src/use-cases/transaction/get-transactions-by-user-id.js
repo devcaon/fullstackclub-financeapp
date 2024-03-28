@@ -1,4 +1,3 @@
-import { userNotFoundResponse } from "../../controllers/helpers"
 import { UserNotFoundError } from "../../errors/user"
 
 export class GetTransactionsByUserIdUseCase {
